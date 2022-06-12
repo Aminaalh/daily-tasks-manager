@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Admin Dashboard Panel</title> 
+
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="/src/assets/images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">My Dialy Task</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dahsboard</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Tasks</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Completed Tasks</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-thumbs-up"></i>
+                    <span class="link-name">Incompleted Tasks</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top" style="background-color: white;">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+            <img src="images/profile.jpg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Dashboard</span>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="uil uil-thumbs-up"></i>
+                        <span class="text">All Tasks</span>
+                        <span class="number">50,120</span>
+                    </div>
+                    <div class="box box2">
+                        <i class="uil uil-comments"></i>
+                        <span class="text">Completed Tasks</span>
+                        <span class="number">20,120</span>
+                    </div>
+                    <div class="box box3">
+                        <i class="uil uil-share"></i>
+                        <span class="text">Incompleted Tasks</span>
+                        <span class="number">10,120</span>
+                    </div>
+                </div>
+            </div>
+            <div class="add-task">
+                <button class="button is-primary" (click)="selectItem()">Add Task</button>
+            </div>
+            <div class="modal">
+                <!-- :class="selectItem() ? 'is-active' : ''" -->
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head">
+                    <p class="modal-card-title">Choose</p>
+                    <button class="delete" aria-label="close"></button>
+                  </header>
+                  <section class="modal-card-body">
+                      
+                    <div class="select">
+                      <select name="selected">
+                        <option value="">Select a item</option>
+                        <option value="Item 1">Item 1</option>
+                        <option value="Item 2">Item 2</option>
+                      </select>
+                    </div>
+              
+                  </section>
+                  <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="button">Cancel</button>
+                  </footer>
+                </div>
+              </div>
+            <div class="add-task">
+                <div class="modal">
+                    <div class="modal-background"></div>
+                    <div class="modal-content">
+                      <!-- Any other Bulma elements you want -->
+                    </div>
+                    <button class="modal-close is-large" aria-label="close"></button>
+                  </div>
+            </div>
+            <div class="Tasks-box">
+                <div class="box long-box" style="background-color: white;">
+                    <p class="progress-text">8 task completed out of 10</p>
+                    <progress class="progress" value="15" max="100">15%</progress>
+                    <div class="task">
+                        <p>Office meet-up</p>
+                        <div class="state-task">
+                            <p>Due Date </p>
+                            <span class="tag is-success">Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+</body>
+</html>
