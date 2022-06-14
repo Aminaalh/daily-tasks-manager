@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
+
+import { TaskService } from 'src/app/task.service';
+import { ActivatedRoute, Params, Router,RouterModule } from '@angular/router';
+import { Task } from '../models/task.model';
+import { List } from '../models/list.model';
 
 
 @Component({
@@ -8,25 +13,58 @@ import { Component, OnInit } from '@angular/core';
 })
 
 
+
 export class DashboardComponent implements OnInit {
+ 
+  lists: List[] = [];
+  tasks: Task[] = [];
 
-  toggleProBanner(event: { preventDefault: () => void; }) {
-    console.log("123");
-    event.preventDefault();
-    // document.querySelector('body').classList.toggle('removeProbanner');
-  }
+  selectedListId!: string;
 
-  constructor() { }
+  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.route.params.subscribe(
+      (params: Params) => {
+        if (params['listId']) {
+          this.selectedListId = params['listId'];
+          this.taskService.getTasks(params['listId']).subscribe((tasks: any) => {
+            this.tasks = tasks;
+          })
+        } 
+        // else {
+        //   this.tasks = [];
+        // }
+      }
+    )
+
+    this.taskService.getLists().subscribe((lists: any) => {
+      this.lists = lists;
+    })
+    
   }
 
-  date: Date = new Date();
-  showModal: boolean = false;
-  selectItem() {
-    console.log("hello");
-      this.showModal = true;
-   }
+  onTaskClick(task: Task) {
+    // we want to set the task to completed
+    this.taskService.complete(task).subscribe(() => {
+      // the task has been set to completed successfully
+      console.log("Completed successully!");
+      task.completed = !task.completed;
+    })
+  }
 
-  
+  onDeleteListClick() {
+    this.taskService.deleteList(this.selectedListId).subscribe((res: any) => {
+      this.router.navigate(['/lists']);
+      console.log(res);
+    })
+  }
+
+  onDeleteTaskClick(id: string) {
+    this.taskService.deleteTask(this.selectedListId, id).subscribe((res: any) => {
+      this.tasks = this.tasks.filter(val => val._id !== id);
+      console.log(res);
+    })
+  }
+
 }

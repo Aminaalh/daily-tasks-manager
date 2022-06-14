@@ -312,7 +312,6 @@ app.post('/users', (req, res) => {
     }).then((refreshToken) => {
         // Session created successfully - refreshToken returned.
         // now we geneate an access auth token for the user
-
         return newUser.generateAccessAuthToken().then((accessToken) => {
             // access auth token generated successfully, now we return an object containing the auth tokens
             return { accessToken, refreshToken }

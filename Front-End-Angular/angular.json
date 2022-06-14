@@ -33,7 +33,7 @@
             ],
             "scripts": [
               "src/assets/js/dashboard.js",
-              "../node_modules/jquery/dist/jquery.min.js"
+              "./node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

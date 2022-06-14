@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-     
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  
+<!----===== Iconscout CSS ===== -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-    <title>Admin Dashboard Panel</title> 
-
-</head>
 <body>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="/src/assets/images/logo.png" alt="">
+                <img src="../../../assets/images/logoo.png" alt="">
             </div>
 
             <span class="logo_name">My Dialy Task</span>
@@ -60,7 +50,7 @@
                 <input type="text" placeholder="Search here...">
             </div>
             
-            <img src="images/profile.jpg" alt="">
+            <img src="../../../assets/images/profile.jpg" alt="">
         </div>
 
         <div class="dash-content">
@@ -69,7 +59,6 @@
                     <i class="uil uil-tachometer-fast-alt"></i>
                     <span class="text">Dashboard</span>
                 </div>
-
                 <div class="boxes">
                     <div class="box box1">
                         <i class="uil uil-thumbs-up"></i>
@@ -89,7 +78,7 @@
                 </div>
             </div>
             <div class="add-task">
-                <button class="button is-primary" (click)="selectItem()">Add Task</button>
+                <button class="button is-primary has-text-white" routerLink="/new-list" routerLinkActive="is-active">+ New List</button>
             </div>
             <div class="modal">
                 <!-- :class="selectItem() ? 'is-active' : ''" -->
@@ -129,8 +118,8 @@
                 <div class="box long-box" style="background-color: white;">
                     <p class="progress-text">8 task completed out of 10</p>
                     <progress class="progress" value="15" max="100">15%</progress>
-                    <div class="task">
-                        <p>Office meet-up</p>
+                    <div class="task" *ngFor="let list of lists" [routerLink]="['/lists', list._id]" routerLinkActive="is-active">
+                        <p>{{list.title }}</p>
                         <div class="state-task">
                             <p>Due Date </p>
                             <span class="tag is-success">Completed</span>
@@ -142,4 +131,4 @@
         </div>
     </section>
 </body>
-</html>
+<router-outlet></router-outlet>
