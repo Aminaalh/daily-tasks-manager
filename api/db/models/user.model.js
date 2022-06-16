@@ -16,6 +16,13 @@ const UserSchema = new mongoose.Schema({
         trim: true,
         unique: true
     },
+    username: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true,
+        unique: true
+    },
     password: {
         type: String,
         required: true,
@@ -105,6 +112,7 @@ UserSchema.statics.findByIdAndToken = function (_id, token) {
 
     return User.findOne({
         _id,
+        username,
         'sessions.token': token
     });
 }

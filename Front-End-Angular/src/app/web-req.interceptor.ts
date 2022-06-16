@@ -3,13 +3,14 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@a
 import { Observable, throwError, empty, Subject } from 'rxjs';
 import { AuthService } from './auth.service';
 import { catchError, tap, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebReqInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   refreshingAccessToken!: boolean;
 
@@ -23,7 +24,7 @@ export class WebReqInterceptor implements HttpInterceptor {
     // call next() and handle the response
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log(error);
+        // console.log(error);
 
         if (error.status === 401) {
           // 401 error so we are unauthorized
@@ -36,11 +37,12 @@ export class WebReqInterceptor implements HttpInterceptor {
                 return next.handle(request);
               }),
               catchError((err: any) => {
-                console.log(err);
+                console.log(err.val);
                 this.authService.logout();
-                return empty();
+                return this.router.navigate(['/welcome']);
               })
             )
+            
         }
 
         return throwError(error);

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { WebReqInterceptor } from './web-req.interceptor';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
+import { EditTaskComponent } from './pages/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
     NewTaskComponent,
     LoginPageComponent,
     SignupPageComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +35,12 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
     HttpClientModule,
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule, 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: WebReqInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: WebReqInterceptor, multi: true },
+    DatePipe,
+    EditTaskComponent
   ],
   bootstrap: [AppComponent]
 })

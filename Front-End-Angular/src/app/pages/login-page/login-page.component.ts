@@ -22,6 +22,8 @@ export class LoginPageComponent implements OnInit {
         this.router.navigate(['/lists']);
       }
       console.log(res);
+      localStorage.setItem('username', res.body.username);
+      return res;
       
     });
   }

@@ -13,6 +13,10 @@
         </div>
 
         <div class="menu-items">
+            <div class="top">
+                <img src="../../../assets/images/profile.jpg" alt="">
+                <p>{{user}}</p>
+            </div>
             <ul class="nav-links">
                 <li><a href="#">
                     <i class="uil uil-estate"></i>
@@ -33,7 +37,7 @@
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a (click)="onLogoutButtonClicked()">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
@@ -42,15 +46,14 @@
     </nav>
 
     <section class="dashboard">
-        <div class="top" style="background-color: white;">
+        <div class="top" >
             <i class="uil uil-bars sidebar-toggle"></i>
 
             <div class="search-box">
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            
-            <img src="../../../assets/images/profile.jpg" alt="">
+
         </div>
 
         <div class="dash-content">
@@ -63,48 +66,23 @@
                     <div class="box box1">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="text">All Tasks</span>
-                        <span class="number">50,120</span>
+                        <span class="number">{{ countT }}</span>
                     </div>
                     <div class="box box2">
                         <i class="uil uil-comments"></i>
                         <span class="text">Completed Tasks</span>
-                        <span class="number">20,120</span>
+                        <span class="number">{{ countC }}</span>
                     </div>
                     <div class="box box3">
                         <i class="uil uil-share"></i>
                         <span class="text">Incompleted Tasks</span>
-                        <span class="number">10,120</span>
+                        <span class="number">{{ countInc }}</span>
                     </div>
                 </div>
             </div>
             <div class="add-task">
-                <button class="button is-primary has-text-white" routerLink="/new-list" routerLinkActive="is-active">+ New List</button>
+                <button class="button has-text-white" routerLink="/new-list" routerLinkActive="is-active">+ New List</button>
             </div>
-            <div class="modal">
-                <!-- :class="selectItem() ? 'is-active' : ''" -->
-                <div class="modal-background"></div>
-                <div class="modal-card">
-                  <header class="modal-card-head">
-                    <p class="modal-card-title">Choose</p>
-                    <button class="delete" aria-label="close"></button>
-                  </header>
-                  <section class="modal-card-body">
-                      
-                    <div class="select">
-                      <select name="selected">
-                        <option value="">Select a item</option>
-                        <option value="Item 1">Item 1</option>
-                        <option value="Item 2">Item 2</option>
-                      </select>
-                    </div>
-              
-                  </section>
-                  <footer class="modal-card-foot">
-                    <button class="button is-success">Save changes</button>
-                    <button class="button">Cancel</button>
-                  </footer>
-                </div>
-              </div>
             <div class="add-task">
                 <div class="modal">
                     <div class="modal-background"></div>
@@ -116,13 +94,22 @@
             </div>
             <div class="Tasks-box">
                 <div class="box long-box" style="background-color: white;">
-                    <p class="progress-text">8 task completed out of 10</p>
-                    <progress class="progress" value="15" max="100">15%</progress>
+                    <p class="progress-text">{{ countC }} task completed out of {{ countT }}</p>
+                    <progress class="progress" [value]="Pourcentage" max="100">15%</progress>
+                    <!-- <button (click)="getStatisticsIncompleted()">click</button> -->
                     <div class="task" *ngFor="let list of lists" [routerLink]="['/lists', list._id]" routerLinkActive="is-active">
-                        <p>{{list.title }}</p>
+                        <div class="div-title">
+                            <p class="list-title">{{list.title }}</p>
+                            <div class="title-tools">
+                                <a  (click)="onDeleteTask()"><i class="uil uil-trash"></i></a>
+                                <a [routerLink]="['/edit-task', list._id]"><i class="uil uil-edit"></i></a>
+                            </div>
+                        </div>
                         <div class="state-task">
-                            <p>Due Date </p>
-                            <span class="tag is-success">Completed</span>
+                            <p>Due Date: {{list.date }}</p>
+                            <span *ngIf="list.state == 'missing'" class="tag is-danger">{{list.state }}</span>
+                            <span *ngIf="list.state == 'incompleted'" class="tag is-warning">{{list.state }}</span>
+                            <span *ngIf="list.state == 'completed'" class="tag is-success">{{list.state }}</span>
                         </div>
                     </div>
                 </div>

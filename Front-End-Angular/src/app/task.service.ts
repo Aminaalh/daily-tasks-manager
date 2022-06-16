@@ -14,14 +14,18 @@ export class TaskService {
     return this.webReqService.get('lists');
   }
 
-  createList(title: string) {
-    // We want to send a web request to create a list
-    return this.webReqService.post('lists', { title });
+  getUser() {
+    return this.webReqService.get('login/users');
   }
 
-  updateList(id: string, title: string) {
+  createList(title: string, desc: string, type: string, date: string) {
+    // We want to send a web request to create a list
+    return this.webReqService.post('lists', { title, desc, type, date });
+  }
+
+  updateList(id: string, title: string, date: string, state: string) {
     // We want to send a web request to update a list
-    return this.webReqService.patch(`lists/${id}`, { title });
+    return this.webReqService.patch(`lists/${id}`, { title, date, state });
   }
 
   updateTask(listId: string, taskId: string, title: string) {

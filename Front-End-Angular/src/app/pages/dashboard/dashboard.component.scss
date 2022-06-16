@@ -110,6 +110,7 @@ nav .menu-items{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: -webkit-center;
 }
 .menu-items li{
     list-style: none;
@@ -140,12 +141,12 @@ body.dark li a:hover:before{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--black-light-color);
+    color: #64bcf4;
 }
 .menu-items li a .link-name{
     font-size: 16px;
     font-weight: 400;
-    color: var(--black-light-color);    
+    color: #64bcf4;    
     transition: var(--tran-05);
 }
 nav.close li a .link-name{
@@ -228,6 +229,7 @@ nav.close ~ .dashboard{
     background-color: var(--panel-color);
     transition: var(--tran-05);
     z-index: 10;
+    background-color: white;
 }
 nav.close ~ .dashboard .top{
     left: 73px;
@@ -267,8 +269,8 @@ nav.close ~ .dashboard .top{
     transform: translateY(-50%);
     color: var(--black-light-color);
 }
-.top img{
-    width: 40px;
+.menu-items .top img{
+    width: 100px;
     border-radius: 50%;
 }
 .dashboard .dash-content{
@@ -300,6 +302,16 @@ nav.close ~ .dashboard .top{
 .add-task{
     text-align: end;
     margin-bottom: 20px;
+}
+
+.add-task .button{
+    background-color: #5bacdf;
+    padding: 5px;
+    border: 0px;
+}
+
+.add-task .button:hover{
+    background-color: #4f93bd;
 }
 .dash-content .boxes{
     display: flex;
@@ -333,10 +345,27 @@ nav.close ~ .dashboard .top{
     color: #242526;
     text-align: left !important;
 }
+
+.Tasks-box .long-box .task {
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding: 20px;
+}
 .Tasks-box .long-box .task .state-task{
     display: flex;
     justify-content: space-between;
+    font-size: small;
 }
+.Tasks-box .long-box .task .div-title{
+    display: flex;    justify-content: space-between;
+}
+
+.Tasks-box .long-box .task .list-title{
+    font-weight: bold;
+    font-size: larger;
+}
+
 .boxes .box i{
     font-size: 33px;
     color: var(--text-color);
@@ -345,7 +374,7 @@ nav.close ~ .dashboard .top{
     white-space: nowrap;
     font-size: 16px;
     font-weight: 500;
-    color: var(--text-color);
+    color: #64bcf4;
 }
 .boxes .box .number{
     font-size: 38px;

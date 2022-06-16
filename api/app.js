@@ -133,9 +133,15 @@ app.post('/lists', authenticate, (req, res) => {
     // We want to create a new list and return the new list document back to the user (which includes the id)
     // The list information (fields) will be passed in via the JSON request body
     let title = req.body.title;
+    let desc = req.body.desc;
+    let type = req.body.type;
+    let date = req.body.date;
 
     let newList = new List({
         title,
+        desc,
+        type,
+        date,
         _userId: req.user_id
     });
     newList.save().then((listDoc) => {
@@ -149,11 +155,14 @@ app.post('/lists', authenticate, (req, res) => {
  * Purpose: Update a specified list
  */
 app.patch('/lists/:id', authenticate, (req, res) => {
+    console.log(req.body)
     // We want to update the specified list (list document with id in the URL) with the new values specified in the JSON body of the request
     List.findOneAndUpdate({ _id: req.params.id, _userId: req.user_id }, {
         $set: req.body
     }).then(() => {
         res.send({ 'message': 'updated successfully'});
+    }).catch((e) => {
+        console.log(e);
     });
 });
 
@@ -306,7 +315,7 @@ app.post('/users', (req, res) => {
 
     let body = req.body;
     let newUser = new User(body);
-
+    console.log(body)
     newUser.save().then(() => {
         return newUser.createSession();
     }).then((refreshToken) => {
@@ -335,7 +344,9 @@ app.post('/users', (req, res) => {
 app.post('/users/login', (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
+    let username = req.body.username;
 
+    
     User.findByCredentials(email, password).then((user) => {
         return user.createSession().then((refreshToken) => {
             // Session created successfully - refreshToken returned.
