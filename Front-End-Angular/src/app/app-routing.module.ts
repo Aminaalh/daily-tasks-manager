@@ -16,7 +16,6 @@ const routes: Routes = [
   { path: 'signup', component: SignupPageComponent },
   { path: 'lists', component: DashboardComponent },
   { path: 'lists/:listId', component: DashboardComponent },
-  // { path: 'lists/:listId/new-task', component: DashboardComponent },
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'edit-task/:listId', component: EditTaskComponent },
   { path: '401', component: Page401Component },

@@ -105,8 +105,14 @@
                                 <a [routerLink]="['/edit-task', list._id]"><i class="uil uil-edit"></i></a>
                             </div>
                         </div>
+                        <div>
+                            <p style="overflow-wrap: anywhere;margin: 20px 0;">{{ list.desc }}</p>
+                        </div>
                         <div class="state-task">
-                            <p>Due Date: {{list.date }}</p>
+                            <p><span style="font-weight: bold;">Type:</span> {{ list.type }}</p>
+                        </div>
+                        <div class="state-task">
+                            <p><span style="font-weight: bold;">Due Date:</span> {{list.date }}</p>
                             <span *ngIf="list.state == 'missing'" class="tag is-danger">{{list.state }}</span>
                             <span *ngIf="list.state == 'incompleted'" class="tag is-warning">{{list.state }}</span>
                             <span *ngIf="list.state == 'completed'" class="tag is-success">{{list.state }}</span>

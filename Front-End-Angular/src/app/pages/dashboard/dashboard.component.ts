@@ -37,9 +37,9 @@ export class DashboardComponent implements OnInit {
       (params: Params) => {
         if (params['listId']) {
           this.selectedListId = params['listId'];
-          this.taskService.getTasks(params['listId']).subscribe((tasks: any) => {
-            this.tasks = tasks;
-          })
+          // this.taskService.getTasks(params['listId']).subscribe((tasks: any) => {
+          //   this.tasks = tasks;
+          // })
         } 
         // else {
         //   this.tasks = [];
@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
           if(myDate[0] <= date_now[0]){
             if(myDate[1] <= date_now[1]){
               if(myDate[2] < date_now[2]){
-                this.editTask.updateListMissing(this.lists[index]._id, this.lists[index].title, this.lists[index].date, 'missing')
+                this.editTask.updateListMissing(this.lists[index]._id, this.lists[index].title, this.lists[index].desc, this.lists[index].type, this.lists[index].date, 'missing')
               }
             }
         }
@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit {
       this.countInc = i;
       this.countC = j;
       this.countT = k;
-      this.Pourcentage = (j*100)/( i+j);
+      this.Pourcentage = (j*100)/(k);
     })
     
     

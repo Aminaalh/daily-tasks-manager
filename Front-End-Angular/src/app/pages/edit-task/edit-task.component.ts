@@ -14,6 +14,8 @@ export class EditTaskComponent implements OnInit {
   listId!: string;
   title!: string;
   date!: string;
+  type!: string;
+  desc!: string;
 
   
   ngOnInit() {
@@ -29,6 +31,8 @@ export class EditTaskComponent implements OnInit {
         if( lists[index]._id == this.listId ){
           this.title = lists[index].title; 
           this.date = lists[index].date; 
+          this.type = lists[index].type; 
+          this.desc = lists[index].desc; 
         }
       }
     })
@@ -36,17 +40,21 @@ export class EditTaskComponent implements OnInit {
     
   }
 
+  onChange(e: any) {
+    this.type= e.target.value;
+ }
 
-  updateList(title: string, date: string, state: string) {
-    console.log()
-    this.taskService.updateList(this.listId, title, date, state).subscribe(() => {
+
+  updateList(title: string, desc: string, type:string, date: string, state: string) {
+    console.log(state)
+    this.taskService.updateList(this.listId, title, desc, type, date, state).subscribe(() => {
       this.router.navigate(['/lists', this.listId]);
     })
   }
 
-  updateListMissing(idList: string, title: string, date: string, state: string) {
+  updateListMissing(idList: string, title: string, desc: string, type:string, date: string, state: string) {
     console.log()
-    this.taskService.updateList(idList, title, date, state).subscribe(() => {
+    this.taskService.updateList(idList, title, desc, type, date, state).subscribe(() => {
       this.router.navigate(['/lists', idList]);
     })
   }

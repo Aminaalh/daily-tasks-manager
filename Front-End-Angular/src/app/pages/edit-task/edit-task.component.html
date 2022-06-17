@@ -5,10 +5,10 @@
     </h1>
 
     <input #listTitleInput class="input has-background-light is-medium" type="text" value="{{title}}" placeholder="Enter task name...">
-    <textarea #listDescInput class="input has-background-light is-medium" type="text" placeholder="Enter list description..."></textarea>  
+    <textarea #listDescInput class="input has-background-light is-medium" type="text" value="{{desc}}" placeholder="Enter list description..."></textarea>  
     <p>Type:</p>
       <div class="select">
-        <select #listTypeInput class="input has-background-light is-medium">
+        <select #listTypeInput class="input has-background-light is-medium" value="{{type}}">
           <option value="work">Work</option>
           <option value="personal">Personal</option>
           <option value="growth">Growth</option>
@@ -20,21 +20,22 @@
       <p class="mb-4 pb-2">State of Task</p>
     </div>
     <div class="col-12 pb-5">
-      <input #listCompleteInput class="checkbox-tools" type="radio" value="completed" name="tools" id="tool-1" checked>
+      <input #listCompleteInput (change)="onChange($event)" class="checkbox-tools" type="radio" value="completed" name="tools" id="tool-1">
       <label class="for-checkbox-tools" for="tool-1">
         <i class='uil uil-line-alt'></i>
         Completed
       </label>
-      <input #listCompleteInput class="checkbox-tools" type="radio" value="incompleted" name="tools" id="tool-2">
+      <input #listCompleteInput (change)="onChange($event)" class="checkbox-tools" type="radio" value="incompleted" name="tools" id="tool-2">
       <label class="for-checkbox-tools" for="tool-2">
         <i class='uil uil-vector-square'></i>
         Incompleted
       </label>
     </div>
+    {{listCompleteInput.value}}
     <div class="buttons is-right">
-      <button class="button is-medium" routerLink="/">Cancel</button>
+      <button class="button is-medium" routerLink="/lists">Cancel</button>
       <button class="save-button button has-text-white is-medium"
-        (click)="updateList(listTitleInput.value, listDateInput.value, listCompleteInput.value)">Save</button>
+        (click)="updateList(listTitleInput.value, listDescInput.value, listTypeInput.value, listDateInput.value, listCompleteInput.value)">Save</button>
     </div>
 
 
