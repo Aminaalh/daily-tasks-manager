@@ -16,6 +16,8 @@ import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { WebReqInterceptor } from './web-req.interceptor';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { EditTaskComponent } from './pages/edit-task/edit-task.component';
+import { Page404Component } from './pages/page404/page404.component';
+import { Page401Component } from './pages/page401/page401.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { EditTaskComponent } from './pages/edit-task/edit-task.component';
     LoginPageComponent,
     SignupPageComponent,
     WelcomePageComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    Page404Component,
+    Page401Component
   ],
   imports: [
     BrowserModule,

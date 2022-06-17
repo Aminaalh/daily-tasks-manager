@@ -39,7 +39,7 @@ export class WebReqInterceptor implements HttpInterceptor {
               catchError((err: any) => {
                 console.log(err.val);
                 this.authService.logout();
-                return this.router.navigate(['/welcome']);
+                return this.router.navigate(['/401']);
               })
             )
             
